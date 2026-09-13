@@ -29,6 +29,16 @@ import static com.dslplatform.json.processor.Context.typeOrClass;
 		"com.fasterxml.jackson.annotation.JsonCreator",
 		"javax.json.bind.annotation.JsonbCreator"
 })
+@SupportedOptions({
+		"dsljson.annotation",
+		"dsljson.configuration",
+		"dsljson.jackson",
+		"dsljson.jsonb",
+		"dsljson.generatedmarker",
+		"dsljson.loglevel",
+		"dsljson.nullable",
+		"dsljson.unknown"
+})
 public class CompiledJsonAnnotationProcessor extends AbstractProcessor {
 
 	private static final Set<String> JsonIgnore;
@@ -46,14 +56,14 @@ public class CompiledJsonAnnotationProcessor extends AbstractProcessor {
 	private static final String GRADLE_OPTION_AGGREGATING = "org.gradle.annotation.processing.aggregating";
 
 	private enum Options {
-		LOG_LEVEL("dsljson.loglevel"),
 		ANNOTATION("dsljson.annotation"),
-		UNKNOWN("dsljson.unknown"),
+		CONFIGURATION("dsljson.configuration"),
 		JACKSON("dsljson.jackson"),
 		JSONB("dsljson.jsonb"),
-		CONFIGURATION("dsljson.configuration"),
+		GENERATED_MARKER("dsljson.generatedmarker"),
+		LOG_LEVEL("dsljson.loglevel"),
 		NULLABLE("dsljson.nullable"),
-		GENERATED_MARKER("dsljson.generatedmarker");
+		UNKNOWN("dsljson.unknown");
 
 		final String value;
 
