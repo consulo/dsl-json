@@ -318,7 +318,7 @@ class ConverterTemplate {
 	private void createLazyReaderAndWriter(AttributeInfo attr, TypeMirror mirror, String namePrefix, StructInfo si) throws IOException {
 		String type = extractTypeSignature(attr, mirror, si.genericSignatures);
 		String typeName = Analysis.objectName(attr.createTypeSignature(context.types(), mirror, si.genericSignatures));
-		code.append("\t\tprivate com.dslplatform.json.JsonReader.ReadObject<").append(typeName).append("> ").append(namePrefix).append("reader_").append(attr.name).append(";\n");
+		code.append("\t\tprivate ").append(nullable("com.dslplatform.json.JsonReader.ReadObject<" + typeName + ">")).append(" ").append(namePrefix).append("reader_").append(attr.name).append(";\n");
 		code.append("\t\tprivate com.dslplatform.json.JsonReader.ReadObject<").append(typeName).append("> ").append(namePrefix).append("reader_").append(attr.name).append("() {\n");
 		code.append("\t\t\tif (").append(namePrefix).append("reader_").append(attr.name).append(" == null) {\n");
 		code.append("\t\t\t\tjava.lang.reflect.Type manifest = ").append(type).append(";\n");
@@ -330,7 +330,7 @@ class ConverterTemplate {
 		code.append("\t\t\treturn ").append(namePrefix).append("reader_").append(attr.name).append(";\n");
 		code.append("\t\t}\n");
 
-		code.append("\t\tprivate com.dslplatform.json.JsonWriter.WriteObject<").append(typeName).append("> ").append(namePrefix).append("writer_").append(attr.name).append(";\n");
+		code.append("\t\tprivate ").append(nullable("com.dslplatform.json.JsonWriter.WriteObject<" + typeName + ">")).append(" ").append(namePrefix).append("writer_").append(attr.name).append(";\n");
 		code.append("\t\tprivate com.dslplatform.json.JsonWriter.WriteObject<").append(typeName).append("> ").append(namePrefix).append("writer_").append(attr.name).append("() {\n");
 		code.append("\t\t\tif (").append(namePrefix).append("writer_").append(attr.name).append(" == null) {\n");
 		code.append("\t\t\t\tjava.lang.reflect.Type manifest = ").append(type).append(";\n");
